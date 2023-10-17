@@ -22,9 +22,9 @@ def play_mab(environment, agent, N, T, disable_tqdm_T = False, seed = 42):
     avg_rewards = np.zeros((N, T))
 
     for n in tqdm(range(N), desc=f'Training agent {agent.name()}'):
-        print("WARNING ON SEED")
-        agent.reset(seed = seed)
-        environment.reset(seed = seed)
+        # print("WARNING ON SEED")
+        agent.reset(seed = n)
+        environment.reset(seed = n)
         for t in tqdm(range(T), disable = disable_tqdm_T):
             action = agent.predict()
             reward = environment.get_reward(action)
