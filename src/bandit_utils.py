@@ -55,6 +55,8 @@ def _play_mab_util(attributes):
 
 def plot_results(plt_arr, title = "Results", path = None):
     # Customize the font properties for the legend
+    plt.rcParams['pdf.fonttype'] = 42
+    plt.rcParams['ps.fonttype'] = 42
     fig, ax = plt.subplots(figsize = (7,6))
     for name, runs in plt_arr:
         if name == 'MSE3':
@@ -75,10 +77,13 @@ def plot_results(plt_arr, title = "Results", path = None):
 
     # Increase the font size of the tick labels on both the x and y axes
     ax.tick_params(axis='both', labelsize=18)  # Adjust the fontsize to your preference
+    ax.yaxis.set_major_formatter(ScalarFormatter(useMathText=True, useOffset=False))
+    ax.xaxis.set_major_formatter(ScalarFormatter(useMathText=True, useOffset=False))
     # ax.yaxis.set_major_formatter(ScalarFormatter(useMathText=True,useOffset=False))
     # ax.xaxis.set_major_formatter(ScalarFormatter(useMathText=True,useOffset=False))
-    ax.legend(prop={'size': '21', 'weight': '400'})#, title_fontweight='bold')
+    ax.legend(prop={'size': '21', 'weight': '400', 'family': 'Times New Roman'})#, title_fontweight='bold')
     ax.grid()
+    fig.tight_layout()
     if path is not None:
         fig.savefig(path)
 
